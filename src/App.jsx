@@ -1,33 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+import { useEffect, useState } from 'react'
 import './App.css'
+import Blogs from './Component/Blogs/Blogs'
+import Navbar from './Component/Navbar/Navbar'
+import Outlinebar from './Component/Outline/Outlinebar'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [bolgsData, setBlogsData] = useState([])
+
+  useEffect(() => {
+    fetch("blogs.json")
+      .then(res => res.json())
+      .then(data => setBlogsData(data))
+
+  }, [])
+
 
   return (
-   <>
-   
-   <h1 className='bg-amber-400'>hellow </h1>
+    <>
 
-      <div className="navbar bg-base-100 shadow-sm">
-        <div className="flex-none">
-          <button className="btn btn-square btn-ghost">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-5 w-5 stroke-current"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path> </svg>
-          </button>
+      <Navbar />
+      <h1 className='text-5xl font-bold p-12'>Blogs Cafe : {bolgsData.length}</h1>
+
+      <div className='flex text-center gap-30'>
+        <div className='w-[70%] grid gap-10'>
+          {
+            bolgsData.map(blog => <Blogs blog={blog}></Blogs>)
+          }
         </div>
-        <div className="flex-1">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
-        </div>
-        <div className="flex-none">
-          <button className="btn btn-square btn-ghost">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-5 w-5 stroke-current"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path> </svg>
-          </button>
+        <div className=''>
+          <Outlinebar></Outlinebar>
         </div>
       </div>
-   
-   </>
+
+
+    </>
   )
 }
 
