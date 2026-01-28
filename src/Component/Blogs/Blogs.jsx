@@ -1,7 +1,7 @@
 import { CiBookmark } from "react-icons/ci";
 
 
-const Blogs = ({ blog, handleBook }) => {
+const Blogs = ({ blog, handleBook, handleMarkread }) => {
    
 
     const { title, cover, author, reading_time } = blog
@@ -27,7 +27,7 @@ const Blogs = ({ blog, handleBook }) => {
                     <p className="text-start text-xl text-gray-600">{title}</p>
                     
                     <div className="card-actions justify-start">
-                        <button className="border-b-2 border-amber-300 btn rounded-2xl hover:btn-dash">Buy Now</button>
+                        <button onClick={() =>handleMarkread(reading_time)} className="border-b-2 border-amber-300 btn rounded-2xl hover:btn-dash">Mark Read</button>
                     </div>
                 </div>
             </div>

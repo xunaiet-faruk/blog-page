@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Outlinebar = ({ book }) => {
-    console.log(book);
+const Outlinebar = ({ book,time }) => {
+
     return (
         <div className='bg-gray-400 text-black font-bold w-96 
           h-screen'>
-                <h1>Reading Time : </h1>
+                <h1>Reading Time :{time} </h1>
             <h1>BookMark Blogs : {book.length}</h1>
             <div className='pt-5'>
               {

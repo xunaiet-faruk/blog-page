@@ -9,6 +9,7 @@ function App() {
 
   const [bolgsData, setBlogsData] = useState([])
   const [book,setBook] =useState([])
+  const [time,setTimes] =useState(0)
 
   useEffect(() => {
     fetch("blogs.json")
@@ -20,7 +21,13 @@ function App() {
 
   const handleBook = (blog) =>{
     setBook([...book,blog])
-    console.log(book);
+  
+  }
+
+  const handleMarkread = (reading_time)=>{
+    const setTime =time + reading_time;
+    setTimes(setTime)
+
   }
 
 
@@ -33,11 +40,11 @@ function App() {
       <div className='flex  justify-center'>
         <div className='w-[70%] grid gap-10'>
           {
-            bolgsData.map(blog => <Blogs blog={blog} handleBook={handleBook}></Blogs>)
+            bolgsData.map(blog => <Blogs blog={blog}  handleBook={handleBook} handleMarkread={handleMarkread}></Blogs>)
           }
         </div>
         <div className=''>
-          <Outlinebar book={book}></Outlinebar>
+          <Outlinebar time={time}  book={book}></Outlinebar>
         </div>
       </div>
 
