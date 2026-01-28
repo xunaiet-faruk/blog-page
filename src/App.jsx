@@ -8,6 +8,7 @@ import Outlinebar from './Component/Outline/Outlinebar'
 function App() {
 
   const [bolgsData, setBlogsData] = useState([])
+  const [book,setBook] =useState([])
 
   useEffect(() => {
     fetch("blogs.json")
@@ -17,20 +18,26 @@ function App() {
   }, [])
 
 
+  const handleBook = (blog) =>{
+    setBook([...book,blog])
+    console.log(book);
+  }
+
+
   return (
     <>
 
       <Navbar />
       <h1 className='text-5xl font-bold p-12'>Blogs Cafe : {bolgsData.length}</h1>
 
-      <div className='flex text-center gap-30'>
+      <div className='flex  justify-center'>
         <div className='w-[70%] grid gap-10'>
           {
-            bolgsData.map(blog => <Blogs blog={blog}></Blogs>)
+            bolgsData.map(blog => <Blogs blog={blog} handleBook={handleBook}></Blogs>)
           }
         </div>
         <div className=''>
-          <Outlinebar></Outlinebar>
+          <Outlinebar book={book}></Outlinebar>
         </div>
       </div>
 
